@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/generated" />
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/dxf/src" />
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/io/src" />
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/net/src" />
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/pdf/src" />
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/serial/src" />
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/svg/src" />
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/src" />
+          <root url="file://$USER_HOME$/Desktop/processing-3.5.4/tools/MovieMaker/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/processing-experimental.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>
