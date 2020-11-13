@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Bandi/Desktop/processing-3.5.4" sourcepath="C:/Users/Bandi/Desktop/processing-3.5.4/modes/java/generated"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="processing-experimental.jar"/>
+	<classpathentry kind="output" path="out/production/Proj1"/>
+</classpath>

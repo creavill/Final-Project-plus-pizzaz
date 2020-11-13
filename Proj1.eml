@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/Proj1"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="C:\Users\Bandi\Desktop\processing-3.5.4" scope="COMPILE">
+		<srcroot url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/generated"/>
+		<srcroot bind="false" url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/dxf/src"/>
+		<srcroot bind="false" url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/io/src"/>
+		<srcroot bind="false" url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/net/src"/>
+		<srcroot bind="false" url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/pdf/src"/>
+		<srcroot bind="false" url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/serial/src"/>
+		<srcroot bind="false" url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/libraries/svg/src"/>
+		<srcroot bind="false" url="file://$USER_HOME$/Desktop/processing-3.5.4/modes/java/src"/>
+		<srcroot bind="false" url="file://$USER_HOME$/Desktop/processing-3.5.4/tools/MovieMaker/src"/>
+	</lib>
+	<lib name="processing-experimental.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/processing-experimental.jar!/"/>
+	</lib>
+</component>

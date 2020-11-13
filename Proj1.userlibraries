@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="hamcrest-core-1.3">
+    <archive path="C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.2.2/lib/hamcrest-core-1.3.jar" />
+  </library>
+  <library name="junit-4.12">
+    <archive path="C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.2.2/lib/junit-4.12.jar" />
+  </library>
+</eclipse-userlibraries>
+
