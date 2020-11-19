@@ -10,10 +10,10 @@ public class Activity extends Action {
     public void executeAction(EventScheduler scheduler) {
         if (this.entity instanceof OctoFull) {
             OctoFull tempOF = (OctoFull)this.entity;
-            tempOF.executeFullActivity(this.world, this.imageStore, scheduler);
+            tempOF.execute(this.world, this.imageStore, scheduler);
         } else if (this.entity instanceof OctoNotFull) {
             OctoNotFull tempONF = (OctoNotFull)this.entity;
-            tempONF.executeOctoNotFullActivity(this.world, this.imageStore, scheduler);
+            tempONF.execute(this.world, this.imageStore, scheduler);
         } else if (Fish.class.equals(this.entity.getClass())) {
             Fish tempF = (Fish)this.entity;
             tempF.executeFishActivity(this.world, this.imageStore, scheduler);
