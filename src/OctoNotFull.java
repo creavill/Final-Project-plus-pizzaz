@@ -11,7 +11,7 @@ public class OctoNotFull extends Octo {
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
         if (this.getResourceCount() >= this.getResourceLimit())
         {
-            Entity octo = OctoFull.createOctoFull(this.getId(), this.getResourceLimit(),
+            OctoFull octo = OctoFull.createOctoFull(this.getId(), this.getResourceLimit(),
                     this.getPosition(), this.getActionPeriod(), this.getAnimationPeriod(),
                     this.getImages());
 

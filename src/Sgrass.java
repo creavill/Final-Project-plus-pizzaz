@@ -3,7 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Sgrass extends Entity {
+public class Sgrass extends ScheduledAction {
 
     public static final String SGRASS_KEY = "seaGrass";
     public static final int SGRASS_NUM_PROPERTIES = 5;
@@ -21,7 +21,7 @@ public class Sgrass extends Entity {
 
         if (openPt.isPresent())
         {
-            Entity fish = Fish.createFish(Fish.FISH_ID_PREFIX + this.getId(),
+            Fish fish = Fish.createFish(Fish.FISH_ID_PREFIX + this.getId(),
                     openPt.get(), Fish.FISH_CORRUPT_MIN +
                             Functions.rand.nextInt(Fish.FISH_CORRUPT_MAX - Fish.FISH_CORRUPT_MIN),
                     imageStore.getImageList(Fish.FISH_KEY));

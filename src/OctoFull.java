@@ -9,7 +9,7 @@ public class OctoFull extends Octo {
     }
 
     public void transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        Entity octo = OctoNotFull.createOctoNotFull(this.getId(), this.getResourceLimit(),
+        OctoNotFull octo = OctoNotFull.createOctoNotFull(this.getId(), this.getResourceLimit(),
                 this.getPosition(), this.getActionPeriod(), this.getAnimationPeriod(),
                 this.getImages());
 
@@ -28,7 +28,7 @@ public class OctoFull extends Octo {
                 this.moveTo(world, fullTarget.get(), scheduler))
         {
             //at atlantis trigger animation
-            fullTarget.get().scheduleActions(scheduler, world, imageStore);
+            ((Atlantis)fullTarget.get()).scheduleActions(scheduler, world, imageStore);
 
             //transform to unfull
             this.transform(world, scheduler, imageStore);

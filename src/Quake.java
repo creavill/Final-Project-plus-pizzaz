@@ -2,7 +2,7 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class Quake extends Entity {
+public class Quake extends ScheduledAnimation {
 
     public static final String QUAKE_KEY = "quake";
     public static final String QUAKE_ID = "quake";

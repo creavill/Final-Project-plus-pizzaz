@@ -3,7 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Crab extends Entity {
+public class Crab extends Mover {
 
     public static final String CRAB_KEY = "crab";
     public static final String CRAB_ID_SUFFIX = " -- crab";
@@ -25,7 +25,7 @@ public class Crab extends Entity {
 
             if (this.moveToCrab(world, crabTarget.get(), scheduler))
             {
-                Entity quake = Quake.createQuake(tgtPos,
+                Quake quake = Quake.createQuake(tgtPos,
                         imageStore.getImageList(Quake.QUAKE_KEY));
 
                 world.addEntity(quake);
@@ -89,7 +89,7 @@ public class Crab extends Entity {
         return newPos;
     }
 
-    public static Entity createCrab(String id, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
+    public static Crab createCrab(String id, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
     {
         return new Crab( id, position, images, 0, 0, actionPeriod, animationPeriod);
     }

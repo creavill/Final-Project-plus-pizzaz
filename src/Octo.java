@@ -2,7 +2,7 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class Octo extends Entity {
+public class Octo extends Mover {
 
     public static final String OCTO_KEY = "octo";
     public static final int OCTO_NUM_PROPERTIES = 7;

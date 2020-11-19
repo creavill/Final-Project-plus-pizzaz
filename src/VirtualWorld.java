@@ -128,7 +128,11 @@ public final class VirtualWorld extends PApplet {
         while(var3.hasNext()) {
             Entity entity = (Entity)var3.next();
             if (entity.getActionPeriod() > 0) {
-                entity.scheduleActions(scheduler, world, imageStore);
+                if (entity instanceof ScheduledAction){
+                    ((ScheduledAction)entity).scheduleActions(scheduler, world, imageStore);
+                } else if (entity instanceof ScheduledAnimation){
+                    ((ScheduledAnimation)entity).scheduleActions(scheduler, world, imageStore);
+                }
             }
         }
 

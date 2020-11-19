@@ -59,7 +59,7 @@ abstract class Entity {
     public void setPosition(Point position) {
         this.position = position;
     }
-    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore)
+   /* public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore)
     {
 
         if (this instanceof OctoFull){
@@ -107,7 +107,7 @@ abstract class Entity {
         }
 
     }
-
+*/
 
 
 

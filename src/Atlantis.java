@@ -2,7 +2,7 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class Atlantis extends Entity {
+public class Atlantis extends ScheduledAction {
 
     public static final String ATLANTIS_KEY = "atlantis";
     public static final int ATLANTIS_NUM_PROPERTIES = 4;
