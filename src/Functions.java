@@ -12,7 +12,7 @@ final class Functions {
         if (entity instanceof Background) {
             return (PImage)((Background)entity).images.get(((Background)entity).imageIndex);
         } else if (entity instanceof Entity) {
-            return (PImage)((Entity)entity).images.get(((Entity)entity).imageIndex);
+            return (PImage) ((Entity) entity).getImages().get(((Entity) entity).getImageIndex());
         } else {
             throw new UnsupportedOperationException(String.format("getCurrentImage not supported for %s", entity));
         }

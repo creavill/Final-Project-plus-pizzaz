@@ -9,11 +9,11 @@ public class OctoNotFull extends Octo {
     }
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
-        if (this.resourceCount >= this.resourceLimit)
+        if (this.getResourceCount() >= this.getResourceLimit())
         {
-            Entity octo = OctoFull.createOctoFull(this.id, this.resourceLimit,
-                    this.position, this.actionPeriod, this.animationPeriod,
-                    this.images);
+            Entity octo = OctoFull.createOctoFull(this.getId(), this.getResourceLimit(),
+                    this.getPosition(), this.getActionPeriod(), this.getAnimationPeriod(),
+                    this.getImages());
 
             world.removeEntity(this);
             scheduler.unscheduleAllEvents(this);
@@ -28,7 +28,7 @@ public class OctoNotFull extends Octo {
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Optional<Entity> notFullTarget = world.findNearest(this.position,
+        Optional<Entity> notFullTarget = world.findNearest(this.getPosition(),
                 Fish.class);
 
         if (!notFullTarget.isPresent() ||
@@ -37,14 +37,14 @@ public class OctoNotFull extends Octo {
         {
             scheduler.scheduleEvent(this,
                     Activity.createActivityAction(this, world, imageStore),
-                    this.actionPeriod);
+                    this.getActionPeriod());
         }
     }
 
     public boolean moveTo( WorldModel world, Entity target, EventScheduler scheduler) {
-        if (this.position.adjacent(target.position))
+        if (this.getPosition().adjacent(target.getPosition()))
         {
-            this.resourceCount += 1;
+            this.setResourceCount(this.getResourceCount()+1);
             world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
 
@@ -52,9 +52,9 @@ public class OctoNotFull extends Octo {
         }
         else
         {
-            Point nextPos = this.nextPositionOcto( world, target.position);
+            Point nextPos = this.nextPositionOcto( world, target.getPosition());
 
-            if (!this.position.equals(nextPos))
+            if (!this.getPosition().equals(nextPos))
             {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent())

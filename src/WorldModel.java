@@ -45,8 +45,8 @@ final class WorldModel {
     }
 
     public void addEntity(Entity entity) {
-        if (this.withinBounds(entity.position)) {
-            this.setOccupancyCell(entity.position, entity);
+        if (this.withinBounds(entity.getPosition())) {
+            this.setOccupancyCell(entity.getPosition(), entity);
             this.entities.add(entity);
         }
 
@@ -65,7 +65,7 @@ final class WorldModel {
     }
 
     public void tryAddEntity(Entity entity) {
-        if (this.isOccupied(entity.position)) {
+        if (this.isOccupied(entity.getPosition())) {
             throw new IllegalArgumentException("position occupied");
         } else {
             this.addEntity(entity);
@@ -87,24 +87,24 @@ final class WorldModel {
     }
 
     public void moveEntity(Entity entity, Point pos) {
-        Point oldPos = entity.position;
+        Point oldPos = entity.getPosition();
         if (this.withinBounds(pos) && !pos.equals(oldPos)) {
             this.setOccupancyCell(oldPos, (Entity)null);
             this.removeEntityAt(pos);
             this.setOccupancyCell(pos, entity);
-            entity.position = pos;
+            entity.setPosition(pos);
         }
 
     }
 
     public void removeEntity(Entity entity) {
-        this.removeEntityAt(entity.position);
+        this.removeEntityAt(entity.getPosition());
     }
 
     public void removeEntityAt(Point pos) {
         if (this.withinBounds(pos) && this.getOccupancyCell(pos) != null) {
             Entity entity = this.getOccupancyCell(pos);
-            entity.position = new Point(-1, -1);
+            entity.setPosition(new Point(-1, -1));
             this.entities.remove(entity);
             this.setOccupancyCell(pos, (Entity)null);
         }
@@ -120,12 +120,12 @@ final class WorldModel {
             return Optional.empty();
         } else {
             Entity nearest = (Entity)entities.get(0);
-            int nearestDistance = pos.distanceSquared(nearest.position);
+            int nearestDistance = pos.distanceSquared(nearest.getPosition());
             Iterator var5 = entities.iterator();
 
             while(var5.hasNext()) {
                 Entity other = (Entity)var5.next();
-                int otherDistance = pos.distanceSquared(other.position);
+                int otherDistance = pos.distanceSquared(other.getPosition());
                 if (otherDistance < nearestDistance) {
                     nearest = other;
                     nearestDistance = otherDistance;

@@ -9,9 +9,9 @@ public class OctoFull extends Octo {
     }
 
     public void transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        Entity octo = OctoNotFull.createOctoNotFull(this.id, this.resourceLimit,
-                this.position, this.actionPeriod, this.animationPeriod,
-                this.images);
+        Entity octo = OctoNotFull.createOctoNotFull(this.getId(), this.getResourceLimit(),
+                this.getPosition(), this.getActionPeriod(), this.getAnimationPeriod(),
+                this.getImages());
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
@@ -21,7 +21,7 @@ public class OctoFull extends Octo {
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Optional<Entity> fullTarget = world.findNearest( this.position,
+        Optional<Entity> fullTarget = world.findNearest(this.getPosition(),
                 Atlantis.class);
 
         if (fullTarget.isPresent() &&
@@ -37,20 +37,20 @@ public class OctoFull extends Octo {
         {
             scheduler.scheduleEvent(this,
                     Activity.createActivityAction(this, world, imageStore),
-                    this.actionPeriod);
+                    this.getActionPeriod());
         }
     }
 
     public boolean moveTo( WorldModel world, Entity target, EventScheduler scheduler) {
-        if (this.position.adjacent(target.position))
+        if (this.getPosition().adjacent(target.getPosition()))
         {
             return true;
         }
         else
         {
-            Point nextPos = this.nextPositionOcto( world, target.position);
+            Point nextPos = this.nextPositionOcto( world, target.getPosition());
 
-            if (!this.position.equals(nextPos))
+            if (!this.getPosition().equals(nextPos))
             {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent())

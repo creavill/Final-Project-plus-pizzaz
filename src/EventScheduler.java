@@ -40,21 +40,21 @@ final class EventScheduler {
 
     public void scheduleActions(Entity entity, WorldModel world, ImageStore imageStore) {
         if (entity.getClass() == OctoFull.class) {
-            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.actionPeriod);
+            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long) entity.getActionPeriod());
             this.scheduleEvent(entity, Animation.createAnimationAction(entity, 0), (long)entity.getAnimationPeriod());
         } else if (entity.getClass() == OctoNotFull.class) {
-            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.actionPeriod);
+            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.getActionPeriod());
             this.scheduleEvent(entity, Animation.createAnimationAction(entity, 0), (long)entity.getAnimationPeriod());
         } else if (entity.getClass() == Fish.class) {
-            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.actionPeriod);
+            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.getActionPeriod());
         } else if (entity.getClass() == Crab.class) {
-            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.actionPeriod);
+            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.getActionPeriod());
             this.scheduleEvent(entity, Animation.createAnimationAction(entity, 0), (long)entity.getAnimationPeriod());
         } else if (entity.getClass() == Quake.class) {
-            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.actionPeriod);
+            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.getActionPeriod());
             this.scheduleEvent(entity, Animation.createAnimationAction(entity, 10), (long)entity.getAnimationPeriod());
         } else if (entity.getClass() == Sgrass.class) {
-            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.actionPeriod);
+            this.scheduleEvent(entity, Activity.createActivityAction(entity, world, imageStore), (long)entity.getActionPeriod());
         } else if (entity.getClass() == Atlantis.class) {
             this.scheduleEvent(entity, Animation.createAnimationAction(entity, 7), (long)entity.getAnimationPeriod());
         }

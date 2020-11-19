@@ -4,26 +4,34 @@ import java.util.List;
 import java.util.Optional;
 
 public class Sgrass extends Entity {
+
+    public static final String SGRASS_KEY = "seaGrass";
+    public static final int SGRASS_NUM_PROPERTIES = 5;
+    public static final int SGRASS_ID = 1;
+    public static final int SGRASS_COL = 2;
+    public static final int SGRASS_ROW = 3;
+    public static final int SGRASS_ACTION_PERIOD = 4;
+
     public Sgrass( String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
     }
 
     public void executeSgrassActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Optional<Point> openPt = WorldModel.findOpenAround(world, this.position);
+        Optional<Point> openPt = WorldModel.findOpenAround(world, this.getPosition());
 
         if (openPt.isPresent())
         {
-            Entity fish = Fish.createFish(FISH_ID_PREFIX + this.id,
-                    openPt.get(), FISH_CORRUPT_MIN +
-                            Functions.rand.nextInt(FISH_CORRUPT_MAX - FISH_CORRUPT_MIN),
-                    imageStore.getImageList(FISH_KEY));
+            Entity fish = Fish.createFish(Fish.FISH_ID_PREFIX + this.getId(),
+                    openPt.get(), Fish.FISH_CORRUPT_MIN +
+                            Functions.rand.nextInt(Fish.FISH_CORRUPT_MAX - Fish.FISH_CORRUPT_MIN),
+                    imageStore.getImageList(Fish.FISH_KEY));
             world.addEntity(fish);
             scheduler.scheduleActions(fish, world, imageStore);
         }
 
         scheduler.scheduleEvent( this,
                 Activity.createActivityAction(this, world, imageStore),
-                this.actionPeriod);
+                this.getActionPeriod());
     }
 
     public static Sgrass createSgrass(String id, Point position, int actionPeriod, List<PImage> images)
