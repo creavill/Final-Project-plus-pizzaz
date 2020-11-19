@@ -3,8 +3,8 @@ import processing.core.PImage;
 import java.util.List;
 
 public class ScheduledAction extends Entity{
-    public ScheduledAction(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
-        super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
+    public ScheduledAction(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
+        super(id, position, images, actionPeriod, animationPeriod);
     }
 
     public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore){

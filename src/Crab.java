@@ -11,8 +11,8 @@ public class Crab extends Mover {
     public static final int CRAB_ANIMATION_MIN = 50;
     public static final int CRAB_ANIMATION_MAX = 150;
 
-    public Crab(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
-        super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
+    public Crab(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
+        super(id, position, images, actionPeriod, animationPeriod);
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
@@ -91,7 +91,7 @@ public class Crab extends Mover {
 
     public static Crab createCrab(String id, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
     {
-        return new Crab( id, position, images, 0, 0, actionPeriod, animationPeriod);
+        return new Crab( id, position, images, actionPeriod, animationPeriod);
     }
 
 }

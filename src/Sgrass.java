@@ -12,8 +12,8 @@ public class Sgrass extends ScheduledAction {
     public static final int SGRASS_ROW = 3;
     public static final int SGRASS_ACTION_PERIOD = 4;
 
-    public Sgrass( String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
-        super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
+    public Sgrass( String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
+        super(id, position, images, actionPeriod, animationPeriod);
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
@@ -36,6 +36,6 @@ public class Sgrass extends ScheduledAction {
 
     public static Sgrass createSgrass(String id, Point position, int actionPeriod, List<PImage> images)
     {
-        return new Sgrass(id, position, images, 0, 0, actionPeriod, 0);
+        return new Sgrass(id, position, images, actionPeriod, 0);
     }
 }

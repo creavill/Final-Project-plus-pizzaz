@@ -13,8 +13,25 @@ public class Octo extends Mover {
     public static final int OCTO_ACTION_PERIOD = 5;
     public static final int OCTO_ANIMATION_PERIOD = 6;
 
+    private int resourceCount;
+    private int resourceLimit;
+
     public Octo( String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
-        super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
+        super(id, position, images, actionPeriod, animationPeriod);
+        this.resourceCount = resourceCount;
+        this.resourceLimit = resourceLimit;
+    }
+
+    public int getResourceLimit() {
+        return resourceLimit;
+    }
+
+    public int getResourceCount() {
+        return resourceCount;
+    }
+
+    public void setResourceCount(int resourceCount) {
+        this.resourceCount = resourceCount;
     }
 
 
