@@ -15,8 +15,8 @@ public class Fish extends ScheduledAction {
     public static final int FISH_CORRUPT_MAX = 30000;
     public static final int FISH_REACH = 1;
 
-    public Fish(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
-        super(id, position, images, actionPeriod, animationPeriod);
+    public Fish(String id, Point position, List<PImage> images, int actionPeriod) {
+        super(id, position, images, actionPeriod);
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
@@ -37,6 +37,6 @@ public class Fish extends ScheduledAction {
 
     public static Fish createFish(String id, Point position, int actionPeriod, List<PImage> images)
     {
-        return new Fish(id, position, images, actionPeriod, 0);
+        return new Fish(id, position, images, actionPeriod);
     }
 }

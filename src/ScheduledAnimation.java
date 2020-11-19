@@ -2,7 +2,8 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class ScheduledAnimation extends Entity {
+public class ScheduledAnimation extends Animatable {
+
     public ScheduledAnimation(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
@@ -14,4 +15,5 @@ public class ScheduledAnimation extends Entity {
         scheduler.scheduleEvent(this, Animation.createAnimationAction(this, 0),
                 this.getAnimationPeriod());
     }
+
 }

@@ -9,15 +9,15 @@ abstract class Entity {
     private List<PImage> images;
     private int imageIndex;
     private int actionPeriod;
-    private int animationPeriod;
+    //private int animationPeriod;
 
-    public Entity(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
+    public Entity(String id, Point position, List<PImage> images, int actionPeriod) {
         this.id = id;
         this.position = position;
         this.images = images;
         this.imageIndex = 0;
         this.actionPeriod = actionPeriod;
-        this.animationPeriod = animationPeriod;
+       // this.animationPeriod = animationPeriod;
     }
 
     public String getId() {
@@ -47,13 +47,14 @@ abstract class Entity {
     }
 
 
-    public int getAnimationPeriod() {
-        if (this.getClass() != OctoFull.class && this.getClass() != OctoNotFull.class && this.getClass() != Crab.class && this.getClass() != Quake.class && this.getClass() != Atlantis.class) {
+   /* public int getAnimationPeriod() {
+        if (this.getClass() != OctoFull.class && this.getClass() != OctoNotFull.class && this.getClass()
+                != Crab.class && this.getClass() != Quake.class && this.getClass() != Atlantis.class) {
             throw new UnsupportedOperationException(String.format("getAnimationPeriod not supported for %s", this.getClass()));
         } else {
             return this.animationPeriod;
         }
-    }
+    }*/
 
     public void nextImage() {
         this.imageIndex = (this.imageIndex + 1) % this.images.size();
