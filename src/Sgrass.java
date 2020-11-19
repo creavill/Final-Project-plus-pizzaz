@@ -26,7 +26,7 @@ public class Sgrass extends Entity {
                             Functions.rand.nextInt(Fish.FISH_CORRUPT_MAX - Fish.FISH_CORRUPT_MIN),
                     imageStore.getImageList(Fish.FISH_KEY));
             world.addEntity(fish);
-            scheduler.scheduleActions(fish, world, imageStore);
+            fish.scheduleActions(scheduler, world, imageStore);
         }
 
         scheduler.scheduleEvent( this,

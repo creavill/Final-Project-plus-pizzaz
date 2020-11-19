@@ -32,7 +32,7 @@ public class Fish extends Entity {
                 imageStore.getImageList(Crab.CRAB_KEY));
 
         world.addEntity(crab);
-        scheduler.scheduleActions(crab, world, imageStore);
+        crab.scheduleActions(scheduler, world, imageStore);
     }
 
     public static Entity createFish(String id, Point position, int actionPeriod, List<PImage> images)

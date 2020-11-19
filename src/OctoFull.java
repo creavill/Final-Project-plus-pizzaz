@@ -17,7 +17,7 @@ public class OctoFull extends Octo {
         scheduler.unscheduleAllEvents(this);
 
         world.addEntity(octo);
-        scheduler.scheduleActions(octo, world, imageStore);
+        octo.scheduleActions(scheduler, world, imageStore);
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
@@ -28,7 +28,7 @@ public class OctoFull extends Octo {
                 this.moveTo(world, fullTarget.get(), scheduler))
         {
             //at atlantis trigger animation
-            scheduler.scheduleActions(fullTarget.get(), world, imageStore);
+            fullTarget.get().scheduleActions(scheduler, world, imageStore);
 
             //transform to unfull
             this.transform(world, scheduler, imageStore);

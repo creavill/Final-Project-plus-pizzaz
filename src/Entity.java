@@ -59,28 +59,55 @@ abstract class Entity {
     public void setPosition(Point position) {
         this.position = position;
     }
-    //    public void scheduleActions(WorldModel world, ImageStore imageStore) {
-//        if (this.getClass() == OctoFull.class) {
-//            EventScheduler.scheduleEvent(this, Activity.createActivityAction(this, world, imageStore), (long)this.actionPeriod);
-//            EventScheduler.scheduleEvent(this, Animation.createAnimationAction(this, 0), (long)this.getAnimationPeriod());
-//        } else if (this.getClass() == OctoNotFull.class) {
-//            EventScheduler.scheduleEvent(this, Activity.createActivityAction(this, world, imageStore), (long)this.actionPeriod);
-//            EventScheduler.scheduleEvent(this, Animation.createAnimationAction(this, 0), (long)this.getAnimationPeriod());
-//        } else if (this.getClass() == Fish.class) {
-//            EventScheduler.scheduleEvent(this, Activity.createActivityAction(this, world, imageStore), (long)this.actionPeriod);
-//        } else if (this.getClass() == Crab.class) {
-//            EventScheduler.scheduleEvent(this, Activity.createActivityAction(this, world, imageStore), (long)this.actionPeriod);
-//            EventScheduler.scheduleEvent(this, Animation.createAnimationAction(this, 0), (long)this.getAnimationPeriod());
-//        } else if (this.getClass() == Quake.class) {
-//            EventScheduler.scheduleEvent(this, Activity.createActivityAction(this, world, imageStore), (long)this.actionPeriod);
-//            EventScheduler.scheduleEvent(this, Animation.createAnimationAction(this, 10), (long)this.getAnimationPeriod());
-//        } else if (this.getClass() == Sgrass.class) {
-//            EventScheduler.scheduleEvent(this, Activity.createActivityAction(this, world, imageStore), (long)this.actionPeriod);
-//        } else if (this.getClass() == Atlantis.class) {
-//            EventScheduler.scheduleEvent(this, Animation.createAnimationAction(this, 7), (long)this.getAnimationPeriod());
-//        }
-//
-//    }
+    public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore)
+    {
+
+        if (this instanceof OctoFull){
+            scheduler.scheduleEvent(this,
+                    Activity.createActivityAction(this, world, imageStore),
+                    this.actionPeriod);
+            scheduler.scheduleEvent(this, Animation.createAnimationAction(this, 0),
+                    this.getAnimationPeriod());
+        }
+        if (this instanceof OctoNotFull) {
+            scheduler.scheduleEvent(this,
+                    Activity.createActivityAction(this, world, imageStore),
+                    this.actionPeriod);
+            scheduler.scheduleEvent(this,
+                    Animation.createAnimationAction(this, 0), this.getAnimationPeriod());
+        } if (this instanceof Fish){
+        scheduler.scheduleEvent(this,
+                Activity.createActivityAction(this, world, imageStore),
+                this.actionPeriod);
+    }
+        if (this instanceof Crab){
+            scheduler.scheduleEvent(this,
+                    Activity.createActivityAction(this, world, imageStore),
+                    this.actionPeriod);
+            scheduler.scheduleEvent(this,
+                    Animation.createAnimationAction(this, 0), this.getAnimationPeriod());
+        }
+        if (this instanceof Quake){
+            scheduler.scheduleEvent(this,
+                    Activity.createActivityAction(this, world, imageStore),
+                    this.actionPeriod);
+            scheduler.scheduleEvent(this,
+                    Animation.createAnimationAction(this, Quake.QUAKE_ANIMATION_REPEAT_COUNT),
+                    this.getAnimationPeriod());
+        }
+        if (this instanceof Sgrass){
+            scheduler.scheduleEvent(this,
+                    Activity.createActivityAction(this, world, imageStore),
+                    this.actionPeriod);
+        }
+        if (this instanceof Atlantis){
+            scheduler.scheduleEvent(this,
+                    Animation.createAnimationAction(this, Atlantis.ATLANTIS_ANIMATION_REPEAT_COUNT),
+                    this.getAnimationPeriod());
+        }
+
+    }
+
 
 
 

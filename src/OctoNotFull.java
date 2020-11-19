@@ -19,7 +19,7 @@ public class OctoNotFull extends Octo {
             scheduler.unscheduleAllEvents(this);
 
             world.addEntity(octo);
-            scheduler.scheduleActions(octo, world, imageStore);
+            octo.scheduleActions(scheduler, world, imageStore);
 
             return true;
         }

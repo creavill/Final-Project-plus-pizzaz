@@ -30,7 +30,7 @@ public class Crab extends Entity {
 
                 world.addEntity(quake);
                 nextPeriod += this.getActionPeriod();
-                scheduler.scheduleActions(quake, world, imageStore);
+                quake.scheduleActions(scheduler, world, imageStore);
             }
         }
 
