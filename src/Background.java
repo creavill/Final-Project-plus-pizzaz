@@ -35,11 +35,11 @@ final class Background {
     }
 
     public static Background getBackgroundCell(WorldModel world, Point pos) {
-        return world.background[pos.y][pos.x];
+        return world.background[pos.getY()][pos.getX()];
     }
 
     public static void setBackgroundCell(WorldModel world, Point pos, Background background) {
-        world.background[pos.y][pos.x] = background;
+        world.background[pos.getY()][pos.getX()] = background;
     }
 
     public static void drawBackground(WorldView view) {

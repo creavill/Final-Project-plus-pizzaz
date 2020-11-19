@@ -30,7 +30,7 @@ final class WorldModel {
     public static Optional<Point> findOpenAround(WorldModel world, Point pos) {
         for(int dy = -1; dy <= 1; ++dy) {
             for(int dx = -1; dx <= 1; ++dx) {
-                Point newPt = new Point(pos.x + dx, pos.y + dy);
+                Point newPt = new Point(pos.getX() + dx, pos.getY() + dy);
                 if (world.withinBounds(newPt) && !world.isOccupied(newPt)) {
                     return Optional.of(newPt);
                 }
@@ -41,7 +41,7 @@ final class WorldModel {
     }
 
     public void setOccupancyCell(Point pos, Entity entity) {
-        this.occupancy[pos.y][pos.x] = entity;
+        this.occupancy[pos.getY()][pos.getX()] = entity;
     }
 
     public void addEntity(Entity entity) {
@@ -53,11 +53,11 @@ final class WorldModel {
     }
 
     public Entity getOccupancyCell(Point pos) {
-        return this.occupancy[pos.y][pos.x];
+        return this.occupancy[pos.getY()][pos.getX()];
     }
 
     public boolean withinBounds(Point pos) {
-        return pos.y >= 0 && pos.y < this.numRows && pos.x >= 0 && pos.x < this.numCols;
+        return pos.getY() >= 0 && pos.getY() < this.numRows && pos.getX() >= 0 && pos.getX() < this.numCols;
     }
 
     public boolean isOccupied(Point pos) {
