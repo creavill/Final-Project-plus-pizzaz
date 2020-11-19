@@ -15,7 +15,7 @@ public class Crab extends Entity {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
     }
 
-    public void executeCrabActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> crabTarget = world.findNearest(this.getPosition(), Sgrass.class);
         long nextPeriod = this.getActionPeriod();
 

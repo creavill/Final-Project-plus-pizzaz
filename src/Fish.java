@@ -19,7 +19,7 @@ public class Fish extends Entity {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
     }
 
-    public void executeFishActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Point pos = this.getPosition();  // store current position before removing
 
         world.removeEntity(this);

@@ -16,7 +16,7 @@ public class Sgrass extends Entity {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
     }
 
-    public void executeSgrassActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Point> openPt = WorldModel.findOpenAround(world, this.getPosition());
 
         if (openPt.isPresent())

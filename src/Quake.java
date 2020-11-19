@@ -14,7 +14,7 @@ public class Quake extends Entity {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
     }
 
-    public void executeQuakeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+    public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         scheduler.unscheduleAllEvents(this);
         world.removeEntity(this);
     }

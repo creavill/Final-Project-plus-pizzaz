@@ -7,33 +7,35 @@ public class Activity extends Action {
         return new Activity(entity, world, imageStore, 0);
     }
 
-    public void executeAction(EventScheduler scheduler) {
+    public void executeAction(EventScheduler scheduler)
+    {
         if (this.entity instanceof OctoFull) {
-            OctoFull tempOF = (OctoFull)this.entity;
-            tempOF.execute(this.world, this.imageStore, scheduler);
-        } else if (this.entity instanceof OctoNotFull) {
-            OctoNotFull tempONF = (OctoNotFull)this.entity;
-            tempONF.execute(this.world, this.imageStore, scheduler);
-        } else if (Fish.class.equals(this.entity.getClass())) {
-            Fish tempF = (Fish)this.entity;
-            tempF.executeFishActivity(this.world, this.imageStore, scheduler);
-        } else if (Crab.class.equals(this.entity.getClass())) {
-            Crab tempC = (Crab)this.entity;
-            tempC.executeCrabActivity(this.world, this.imageStore, scheduler);
-        } else if (Quake.class.equals(this.entity.getClass())) {
-            Quake tempQ = (Quake)this.entity;
-            tempQ.executeQuakeActivity(this.world, this.imageStore, scheduler);
-        } else if (Sgrass.class.equals(this.entity.getClass())) {
-            Sgrass tempS = (Sgrass)this.entity;
-            tempS.executeSgrassActivity(this.world, this.imageStore, scheduler);
-        } else {
-            if (!Atlantis.class.equals(this.entity.getClass())) {
-                throw new UnsupportedOperationException(String.format("executeActivityAction not supported for %s", this.entity.getClass()));
-            }
-
-            Atlantis tempA = (Atlantis)this.entity;
-            tempA.executeActivity(this.world, this.imageStore, scheduler);
+            ((OctoFull)this.entity).execute(this.world,
+                    this.imageStore, scheduler);
         }
-
+        if (this.entity instanceof OctoNotFull) {
+            ((OctoNotFull)this.entity).execute(this.world,
+                    this.imageStore, scheduler);
+        }
+        if (this.entity instanceof Fish) {
+            ((Fish)this.entity).execute(this.world,
+                    this.imageStore, scheduler);
+        }
+        if (this.entity instanceof Crab) {
+            ((Crab)this.entity).execute(this.world,
+                    this.imageStore, scheduler);
+        }
+        if (this.entity instanceof Quake) {
+            ((Quake)this.entity).execute(this.world,
+                    this.imageStore, scheduler);
+        }
+        if (this.entity instanceof Sgrass) {
+            ((Sgrass)this.entity).execute(this.world,
+                    this.imageStore, scheduler);
+        }
+        if (this.entity instanceof Atlantis) {
+            ((Atlantis)this.entity).execute(this.world,
+                    this.imageStore, scheduler);
+        }
     }
 }
