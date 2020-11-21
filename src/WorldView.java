@@ -28,7 +28,6 @@ final class WorldView {
                 this.screen.image(Functions.getCurrentImage(entity), (float)(viewPoint.getX() * this.tileWidth), (float)(viewPoint.getY() * this.tileHeight));
             }
         }
-
     }
 
     public static int clamp(int value, int low, int high) {

@@ -65,7 +65,7 @@ public class Crab extends Mover {
         }
     }
 
-    public Point nextPosition( WorldModel world, Point destPos) {
+   /* public Point nextPosition( WorldModel world, Point destPos) {
         int horiz = Integer.signum(destPos.getX() - this.getPosition().getX());
         Point newPos = new Point(this.getPosition().getX() + horiz,
                 this.getPosition().getY());
@@ -87,7 +87,7 @@ public class Crab extends Mover {
         }
 
         return newPos;
-    }
+    }*/
 
     public static Crab createCrab(String id, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
     {
