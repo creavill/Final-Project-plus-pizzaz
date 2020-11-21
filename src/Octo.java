@@ -51,8 +51,6 @@ public class Octo extends Mover {
                 newPos = this.getPosition();
             }
         }
-
         return newPos;
     }
-
 }
