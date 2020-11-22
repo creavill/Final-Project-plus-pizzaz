@@ -43,42 +43,44 @@ public final class VirtualWorld extends PApplet {
     }
 
     public void setup() {
-        this.imageStore = new ImageStore(createImageColored(32, 32, 8421504));
-        this.world = new WorldModel(30, 40, createDefaultBackground(this.imageStore));
-        this.view = new WorldView(15, 20, this, this.world, 32, 32);
+        this.imageStore = new ImageStore(createImageColored(TILE_WIDTH, TILE_HEIGHT, DEFAULT_IMAGE_COLOR));
+        this.world = new WorldModel(WORLD_ROWS, WORLD_COLS, createDefaultBackground(this.imageStore));
+        this.view = new WorldView(VIEW_ROWS, VIEW_COLS, this, this.world, TILE_WIDTH, TILE_HEIGHT);
         this.scheduler = new EventScheduler(timeScale);
-        loadImages("imagelist", this.imageStore, this);
-        loadWorld(this.world, "world.sav", this.imageStore);
+        loadImages(IMAGE_LIST_FILE_NAME, this.imageStore, this);
+        loadWorld(this.world, LOAD_FILE_NAME, this.imageStore);
         scheduleActions(this.world, this.scheduler, this.imageStore);
-        this.next_time = System.currentTimeMillis() + 100L;
+        this.next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
     }
 
     public void draw() {
         long time = System.currentTimeMillis();
         if (time >= this.next_time) {
             this.scheduler.updateOnTime(time);
-            this.next_time = time + 100L;
+            this.next_time = time + TIMER_ACTION_PERIOD;
         }
 
         Viewport.drawViewport(this.view);
     }
 
     public void keyPressed() {
-        if (this.key == '\uffff') {
+        if (this.key == CODED) {
             int dx = 0;
             int dy = 0;
-            switch(this.keyCode) {
-                case 37:
-                    dx = -1;
-                    break;
-                case 38:
+            switch (keyCode)
+            {
+                case UP:
                     dy = -1;
                     break;
-                case 39:
+                case DOWN:
+                    dy = 1;
+                    break;
+                case LEFT:
+                    dx = -1;
+                    break;
+                case RIGHT:
                     dx = 1;
                     break;
-                case 40:
-                    dy = 1;
             }
 
             this.view.shiftView(dx, dy);
@@ -87,11 +89,11 @@ public final class VirtualWorld extends PApplet {
     }
 
     public static Background createDefaultBackground(ImageStore imageStore) {
-        return new Background("background_default", imageStore.getImageList("background_default"));
+        return new Background(DEFAULT_IMAGE_NAME, imageStore.getImageList(DEFAULT_IMAGE_NAME));
     }
 
     public static PImage createImageColored(int width, int height, int color) {
-        PImage img = new PImage(width, height, 1);
+        PImage img = new PImage(width, height, RGB);
         img.loadPixels();
 
         for(int i = 0; i < img.pixels.length; ++i) {
@@ -138,7 +140,7 @@ public final class VirtualWorld extends PApplet {
 
     }
 
-    public static void parseCommandLine(String[] args) {
+    /*public static void parseCommandLine(String[] args) {
         String[] var1 = args;
         int var2 = args.length;
 
@@ -147,33 +149,50 @@ public final class VirtualWorld extends PApplet {
             byte var6 = -1;
             switch(arg.hashCode()) {
                 case 1288310:
-                    if (arg.equals("-faster")) {
+                    if (arg.equals(FASTER_FLAG)) {
                         var6 = 1;
                     }
                     break;
                 case 39937757:
-                    if (arg.equals("-fastest")) {
+                    if (arg.equals(FASTEST_FLAG)) {
                         var6 = 2;
                     }
                     break;
                 case 44694025:
-                    if (arg.equals("-fast")) {
+                    if (arg.equals(FAST_FLAG)) {
                         var6 = 0;
                     }
             }
 
             switch(var6) {
                 case 0:
-                    timeScale = Math.min(0.5D, timeScale);
+                    timeScale = Math.min(FAST_SCALE, timeScale);
                     break;
                 case 1:
-                    timeScale = Math.min(0.25D, timeScale);
+                    timeScale = Math.min(FASTER_SCALE, timeScale);
                     break;
                 case 2:
-                    timeScale = Math.min(0.1D, timeScale);
+                    timeScale = Math.min(FASTEST_SCALE, timeScale);
             }
         }
-
+    }*/
+    private static void parseCommandLine(String [] args)
+    {
+        for (String arg : args)
+        {
+            switch (arg)
+            {
+                case FAST_FLAG:
+                    timeScale = Math.min(FAST_SCALE, timeScale);
+                    break;
+                case FASTER_FLAG:
+                    timeScale = Math.min(FASTER_SCALE, timeScale);
+                    break;
+                case FASTEST_FLAG:
+                    timeScale = Math.min(FASTEST_SCALE, timeScale);
+                    break;
+            }
+        }
     }
 
     public static void main(String[] args) {
