@@ -19,7 +19,6 @@ public class Mover extends ScheduledAnimation {
     }
 
 
-
     private static Predicate<Point> canPassThrough(WorldModel world) {
         return p -> (world.withinBounds(p) && !world.isOccupied(p));
     }
