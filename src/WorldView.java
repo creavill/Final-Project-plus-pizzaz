@@ -22,13 +22,12 @@ final class WorldView {
 
         while(var1.hasNext()) {
             Entity entity = (Entity)var1.next();
-            Point pos = entity.position;
+            Point pos = entity.getPosition();
             if (this.viewport.contains(pos)) {
-                Point viewPoint = this.viewport.worldToViewport(pos.x, pos.y);
-                this.screen.image(Functions.getCurrentImage(entity), (float)(viewPoint.x * this.tileWidth), (float)(viewPoint.y * this.tileHeight));
+                Point viewPoint = this.viewport.worldToViewport(pos.getX(), pos.getY());
+                this.screen.image(Functions.getCurrentImage(entity), (float)(viewPoint.getX() * this.tileWidth), (float)(viewPoint.getY() * this.tileHeight));
             }
         }
-
     }
 
     public static int clamp(int value, int low, int high) {

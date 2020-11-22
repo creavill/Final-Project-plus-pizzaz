@@ -8,49 +8,49 @@ public class OctoFull extends Octo {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
     }
 
-    public void transformFull(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        Entity octo = OctoNotFull.createOctoNotFull(this.id, this.resourceLimit,
-                this.position, this.actionPeriod, this.animationPeriod,
-                this.images);
+    public void transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
+        OctoNotFull octo = OctoNotFull.createOctoNotFull(this.getId(), this.getResourceLimit(),
+                this.getPosition(), this.getActionPeriod(), this.getAnimationPeriod(),
+                this.getImages());
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
         world.addEntity(octo);
-        scheduler.scheduleActions(octo, world, imageStore);
+        octo.scheduleActions(scheduler, world, imageStore);
     }
 
-    public void executeFullActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Optional<Entity> fullTarget = world.findNearest( this.position,
+    public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+        Optional<Entity> fullTarget = world.findNearest(this.getPosition(),
                 Atlantis.class);
 
         if (fullTarget.isPresent() &&
-                this.moveToFull(world, fullTarget.get(), scheduler))
+                this.moveTo(world, fullTarget.get(), scheduler))
         {
             //at atlantis trigger animation
-            scheduler.scheduleActions(fullTarget.get(), world, imageStore);
+            ((Atlantis)fullTarget.get()).scheduleActions(scheduler, world, imageStore);
 
             //transform to unfull
-            this.transformFull(world, scheduler, imageStore);
+            this.transform(world, scheduler, imageStore);
         }
         else
         {
             scheduler.scheduleEvent(this,
                     Activity.createActivityAction(this, world, imageStore),
-                    this.actionPeriod);
+                    this.getActionPeriod());
         }
     }
 
-    public boolean moveToFull( WorldModel world, Entity target, EventScheduler scheduler) {
-        if (this.position.adjacent(target.position))
+    public boolean moveTo( WorldModel world, Entity target, EventScheduler scheduler) {
+        if (this.getPosition().adjacent(target.getPosition()))
         {
             return true;
         }
         else
         {
-            Point nextPos = this.nextPositionOcto( world, target.position);
+            Point nextPos = this.nextPosition( world, target.getPosition());
 
-            if (!this.position.equals(nextPos))
+            if (!this.getPosition().equals(nextPos))
             {
                 Optional<Entity> occupant = world.getOccupant(nextPos);
                 if (occupant.isPresent())

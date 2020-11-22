@@ -1,11 +1,20 @@
 
 final class Point {
-    public final int x;
-    public final int y;
+
+    private final int x;
+    private final int y;
 
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public String toString() {
@@ -32,4 +41,11 @@ final class Point {
         int deltaY = this.y - p2.y;
         return deltaX * deltaX + deltaY * deltaY;
     }
+
+    public int heuristic(Point other){
+        return Math.abs(this.getX() - other.getX())
+                + Math.abs(this.getY() - other.getY());
+    }
+
+
 }

@@ -30,7 +30,7 @@ final class WorldModel {
     public static Optional<Point> findOpenAround(WorldModel world, Point pos) {
         for(int dy = -1; dy <= 1; ++dy) {
             for(int dx = -1; dx <= 1; ++dx) {
-                Point newPt = new Point(pos.x + dx, pos.y + dy);
+                Point newPt = new Point(pos.getX() + dx, pos.getY() + dy);
                 if (world.withinBounds(newPt) && !world.isOccupied(newPt)) {
                     return Optional.of(newPt);
                 }
@@ -41,23 +41,23 @@ final class WorldModel {
     }
 
     public void setOccupancyCell(Point pos, Entity entity) {
-        this.occupancy[pos.y][pos.x] = entity;
+        this.occupancy[pos.getY()][pos.getX()] = entity;
     }
 
     public void addEntity(Entity entity) {
-        if (this.withinBounds(entity.position)) {
-            this.setOccupancyCell(entity.position, entity);
+        if (this.withinBounds(entity.getPosition())) {
+            this.setOccupancyCell(entity.getPosition(), entity);
             this.entities.add(entity);
         }
 
     }
 
     public Entity getOccupancyCell(Point pos) {
-        return this.occupancy[pos.y][pos.x];
+        return this.occupancy[pos.getY()][pos.getX()];
     }
 
     public boolean withinBounds(Point pos) {
-        return pos.y >= 0 && pos.y < this.numRows && pos.x >= 0 && pos.x < this.numCols;
+        return pos.getY() >= 0 && pos.getY() < this.numRows && pos.getX() >= 0 && pos.getX() < this.numCols;
     }
 
     public boolean isOccupied(Point pos) {
@@ -65,7 +65,7 @@ final class WorldModel {
     }
 
     public void tryAddEntity(Entity entity) {
-        if (this.isOccupied(entity.position)) {
+        if (this.isOccupied(entity.getPosition())) {
             throw new IllegalArgumentException("position occupied");
         } else {
             this.addEntity(entity);
@@ -87,24 +87,24 @@ final class WorldModel {
     }
 
     public void moveEntity(Entity entity, Point pos) {
-        Point oldPos = entity.position;
+        Point oldPos = entity.getPosition();
         if (this.withinBounds(pos) && !pos.equals(oldPos)) {
             this.setOccupancyCell(oldPos, (Entity)null);
             this.removeEntityAt(pos);
             this.setOccupancyCell(pos, entity);
-            entity.position = pos;
+            entity.setPosition(pos);
         }
 
     }
 
     public void removeEntity(Entity entity) {
-        this.removeEntityAt(entity.position);
+        this.removeEntityAt(entity.getPosition());
     }
 
     public void removeEntityAt(Point pos) {
         if (this.withinBounds(pos) && this.getOccupancyCell(pos) != null) {
             Entity entity = this.getOccupancyCell(pos);
-            entity.position = new Point(-1, -1);
+            entity.setPosition(new Point(-1, -1));
             this.entities.remove(entity);
             this.setOccupancyCell(pos, (Entity)null);
         }
@@ -120,12 +120,12 @@ final class WorldModel {
             return Optional.empty();
         } else {
             Entity nearest = (Entity)entities.get(0);
-            int nearestDistance = pos.distanceSquared(nearest.position);
+            int nearestDistance = pos.distanceSquared(nearest.getPosition());
             Iterator var5 = entities.iterator();
 
             while(var5.hasNext()) {
                 Entity other = (Entity)var5.next();
-                int otherDistance = pos.distanceSquared(other.position);
+                int otherDistance = pos.distanceSquared(other.getPosition());
                 if (otherDistance < nearestDistance) {
                     nearest = other;
                     nearestDistance = otherDistance;
