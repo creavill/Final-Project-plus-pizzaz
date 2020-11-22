@@ -12,12 +12,15 @@ public final class VirtualWorld extends PApplet {
     public static final int VIEW_HEIGHT = 480;
     public static final int TILE_WIDTH = 32;
     public static final int TILE_HEIGHT = 32;
+
     public static final int WORLD_WIDTH_SCALE = 2;
     public static final int WORLD_HEIGHT_SCALE = 2;
+
     public static final int VIEW_COLS = 20;
     public static final int VIEW_ROWS = 15;
-    public static final int WORLD_COLS = 40;
-    public static final int WORLD_ROWS = 30;
+    private static final int WORLD_COLS = VIEW_COLS * WORLD_WIDTH_SCALE;
+    private static final int WORLD_ROWS = VIEW_ROWS * WORLD_HEIGHT_SCALE;
+
     public static final String IMAGE_LIST_FILE_NAME = "imagelist";
     public static final String DEFAULT_IMAGE_NAME = "background_default";
     public static final int DEFAULT_IMAGE_COLOR = 8421504;
@@ -39,7 +42,7 @@ public final class VirtualWorld extends PApplet {
     }
 
     public void settings() {
-        this.size(640, 480);
+        this.size(VIEW_WIDTH, VIEW_HEIGHT);
     }
 
     public void setup() {
