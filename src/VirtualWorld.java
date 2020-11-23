@@ -38,6 +38,14 @@ public final class VirtualWorld extends PApplet {
     public EventScheduler scheduler;
     public long next_time;
 
+
+    private ColorRGB green = new ColorRGB(0,255,0);
+    private ColorRGB red = new ColorRGB(255,0,0);
+    //private ColorRGB blue = new ColorRGB(0,0,255);
+
+    private Rectangle health = new Rectangle(new Point(960, 32), new Point(1248,0), green);
+    private Rectangle fullness = new Rectangle(new Point(960, 64), new Point(1248,32), red);
+
     public VirtualWorld() {
     }
 
