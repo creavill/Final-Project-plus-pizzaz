@@ -1,4 +1,3 @@
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -49,7 +48,6 @@ final class WorldModel {
             this.setOccupancyCell(entity.getPosition(), entity);
             this.entities.add(entity);
         }
-
     }
 
     public Entity getOccupancyCell(Point pos) {
