@@ -25,14 +25,14 @@ public class Fish extends ScheduledAction {
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
-        Crab crab = Crab.createCrab(this.getId() + Crab.CRAB_ID_SUFFIX,
-                pos, this.getActionPeriod() / Crab.CRAB_PERIOD_SCALE,
-                Crab.CRAB_ANIMATION_MIN +
-                        Functions.rand.nextInt(Crab.CRAB_ANIMATION_MAX - Crab.CRAB_ANIMATION_MIN),
-                imageStore.getImageList(Crab.CRAB_KEY));
+        Dog dog = Dog.createDog(this.getId() + Dog.DOG_ID_SUFFIX,
+                pos, this.getActionPeriod() / Dog.DOG_PERIOD_SCALE,
+                Dog.DOG_ANIMATION_MIN +
+                        Functions.rand.nextInt(Dog.DOG_ANIMATION_MAX - Dog.DOG_ANIMATION_MIN),
+                imageStore.getImageList(Dog.DOG_KEY));
 
-        world.addEntity(crab);
-        crab.scheduleActions(scheduler, world, imageStore);
+        world.addEntity(dog);
+        dog.scheduleActions(scheduler, world, imageStore);
     }
 
     public static Fish createFish(String id, Point position, int actionPeriod, List<PImage> images)

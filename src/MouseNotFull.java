@@ -3,15 +3,15 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class OctoNotFull extends Octo {
-    public OctoNotFull(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
+public class MouseNotFull extends Mouse {
+    public MouseNotFull(String id, Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
         super(id, position, images, resourceLimit, resourceCount, actionPeriod, animationPeriod);
     }
 
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
         if (this.getResourceCount() >= this.getResourceLimit())
         {
-            OctoFull octo = OctoFull.createOctoFull(this.getId(), this.getResourceLimit(),
+            MouseFull octo = MouseFull.createOctoFull(this.getId(), this.getResourceLimit(),
                     this.getPosition(), this.getActionPeriod(), this.getAnimationPeriod(),
                     this.getImages());
 
@@ -68,8 +68,8 @@ public class OctoNotFull extends Octo {
         }
     }
 
-    public static OctoNotFull createOctoNotFull(String id, int resourceLimit, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
+    public static MouseNotFull createOctoNotFull(String id, int resourceLimit, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
     {
-        return new OctoNotFull(id, position, images, resourceLimit, resourceLimit, actionPeriod, animationPeriod);
+        return new MouseNotFull(id, position, images, resourceLimit, resourceLimit, actionPeriod, animationPeriod);
     }
 }

@@ -3,27 +3,27 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Crab extends Mover {
+public class Dog extends Mover {
 
-    public static final String CRAB_KEY = "crab";
-    public static final String CRAB_ID_SUFFIX = " -- crab";
-    public static final int CRAB_PERIOD_SCALE = 4;
-    public static final int CRAB_ANIMATION_MIN = 50;
-    public static final int CRAB_ANIMATION_MAX = 150;
+    public static final String DOG_KEY = "dog";
+    public static final String DOG_ID_SUFFIX = " -- dog";
+    public static final int DOG_PERIOD_SCALE = 4;
+    public static final int DOG_ANIMATION_MIN = 50;
+    public static final int DOG_ANIMATION_MAX = 150;
 
-    public Crab(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
+    public Dog(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Optional<Entity> crabTarget = world.findNearest(this.getPosition(), Sgrass.class);
+        Optional<Entity> crabTarget = world.findNearest(this.getPosition(), Cheese.class);
         long nextPeriod = this.getActionPeriod();
 
         if (crabTarget.isPresent())
         {
             Point tgtPos = crabTarget.get().getPosition();
 
-            if (this.moveToCrab(world, crabTarget.get(), scheduler))
+            if (this.moveToDog(world, crabTarget.get(), scheduler))
             {
                 Quake quake = Quake.createQuake(tgtPos,
                         imageStore.getImageList(Quake.QUAKE_KEY));
@@ -40,7 +40,7 @@ public class Crab extends Mover {
     }
 
 
-    public boolean moveToCrab(WorldModel world, Entity target, EventScheduler scheduler) {
+    public boolean moveToDog(WorldModel world, Entity target, EventScheduler scheduler) {
         if (this.getPosition().adjacent(target.getPosition()))
         {
             world.removeEntity(target);
@@ -89,9 +89,9 @@ public class Crab extends Mover {
         return newPos;
     }*/
 
-    public static Crab createCrab(String id, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
+    public static Dog createDog(String id, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
     {
-        return new Crab( id, position, images, actionPeriod, animationPeriod);
+        return new Dog( id, position, images, actionPeriod, animationPeriod);
     }
 
 }

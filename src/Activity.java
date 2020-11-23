@@ -9,32 +9,32 @@ public class Activity extends Action {
 
     public void executeAction(EventScheduler scheduler)
     {
-        if (this.entity instanceof OctoFull) {
-            ((OctoFull)this.entity).execute(this.world,
+        if (this.entity instanceof MouseFull) {
+            ((MouseFull)this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
-        if (this.entity instanceof OctoNotFull) {
-            ((OctoNotFull)this.entity).execute(this.world,
+        if (this.entity instanceof MouseNotFull) {
+            ((MouseNotFull)this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
         if (this.entity instanceof Fish) {
             ((Fish)this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
-        if (this.entity instanceof Crab) {
-            ((Crab)this.entity).execute(this.world,
+        if (this.entity instanceof Dog) {
+            ((Dog)this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
         if (this.entity instanceof Quake) {
             ((Quake)this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
-        if (this.entity instanceof Sgrass) {
-            ((Sgrass)this.entity).execute(this.world,
+        if (this.entity instanceof Cheese) {
+            ((Cheese)this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
-        if (this.entity instanceof Atlantis) {
-            ((Atlantis)this.entity).execute(this.world,
+        if (this.entity instanceof MouseHole) {
+            ((MouseHole)this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
     }

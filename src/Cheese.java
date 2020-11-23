@@ -2,16 +2,16 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Sgrass extends ScheduledAction {
+public class Cheese extends ScheduledAction {
 
-    public static final String SGRASS_KEY = "seaGrass";
-    public static final int SGRASS_NUM_PROPERTIES = 5;
-    public static final int SGRASS_ID = 1;
-    public static final int SGRASS_COL = 2;
-    public static final int SGRASS_ROW = 3;
-    public static final int SGRASS_ACTION_PERIOD = 4;
+    public static final String CHEESE_KEY = "seaGrass";
+    public static final int CHEESE_NUM_PROPERTIES = 5;
+    public static final int CHEESE_ID = 1;
+    public static final int CHEESE_COL = 2;
+    public static final int CHEESE_ROW = 3;
+    public static final int CHEESE_ACTION_PERIOD = 4;
 
-    public Sgrass( String id, Point position, List<PImage> images, int actionPeriod) {
+    public Cheese( String id, Point position, List<PImage> images, int actionPeriod) {
         super(id, position, images, actionPeriod);
     }
 
@@ -33,8 +33,8 @@ public class Sgrass extends ScheduledAction {
                 this.getActionPeriod());
     }
 
-    public static Sgrass createSgrass(String id, Point position, int actionPeriod, List<PImage> images)
+    public static Cheese createCheese(String id, Point position, int actionPeriod, List<PImage> images)
     {
-        return new Sgrass(id, position, images, actionPeriod);
+        return new Cheese(id, position, images, actionPeriod);
     }
 }
