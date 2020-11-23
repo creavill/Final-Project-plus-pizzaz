@@ -37,6 +37,7 @@ public final class VirtualWorld extends PApplet {
     public WorldView view;
     public EventScheduler scheduler;
     public long next_time;
+    public MainCat cat;
 
     public VirtualWorld() {
     }
@@ -54,6 +55,12 @@ public final class VirtualWorld extends PApplet {
         loadWorld(this.world, LOAD_FILE_NAME, this.imageStore);
         scheduleActions(this.world, this.scheduler, this.imageStore);
         this.next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
+
+        for (Iterator<Entity> it = this.world.entities.iterator(); it.hasNext(); ) {
+                Entity e = it.next();
+                if (e instanceof MainCat)
+                    cat = (MainCat)e;
+            }
     }
 
     public void draw() {
@@ -85,7 +92,24 @@ public final class VirtualWorld extends PApplet {
                     dx = 1;
                     break;
             }
-
+          //  WorldModel.moveEntity()
+//            MainCat cat = new MainCat("mainCat", new Point(2,2),
+//                    this.imageStore.getImageList(Cat.CAT_KEY  ), 4, 4);
+//            for (Iterator<Entity> it = this.world.entities.iterator(); it.hasNext(); ) {
+//                Entity e = it.next();
+//                if (e instanceof MainCat)
+//                    cat = (MainCat)e;
+//            }
+            System.out.println(cat.getPosition().getX());
+            Point newPos= new Point(cat.getPosition().getX(), cat.getPosition().getY() );
+            if(!world.isOccupied(new Point(cat.getPosition().getX()+dx, cat.getPosition().getY()+dy))) {
+                newPos=new Point(cat.getPosition().getX() + dx, cat.getPosition().getY() + dy);
+                this.world.moveEntity(cat, newPos);
+            }
+            /*
+                Only view.shiftview if the x and y value are not center
+             */
+            if(newPos.getX()!=view.viewport.col/2  )
             this.view.shiftView(dx, dy);
         }
 

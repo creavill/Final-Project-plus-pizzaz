@@ -12,7 +12,7 @@ public class Animatable extends Entity{
     }
 
     public int getAnimationPeriod() {
-        if (this.getClass() != MouseFull.class && this.getClass() != MouseNotFull.class && this.getClass()
+        if (this.getClass() != MouseFull.class && this.getClass() != Cat.class && this.getClass() != MainCat.class && this.getClass() != MouseNotFull.class && this.getClass()
                 != Dog.class && this.getClass() != Quake.class && this.getClass() != MouseHole.class) {
             throw new UnsupportedOperationException(String.format("getAnimationPeriod not supported for %s", this.getClass()));
         } else {

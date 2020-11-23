@@ -11,15 +11,15 @@ public class MouseNotFull extends Mouse {
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
         if (this.getResourceCount() >= this.getResourceLimit())
         {
-            MouseFull octo = MouseFull.createOctoFull(this.getId(), this.getResourceLimit(),
+            MouseFull mouse = MouseFull.createOctoFull(this.getId(), this.getResourceLimit(),
                     this.getPosition(), this.getActionPeriod(), this.getAnimationPeriod(),
                     this.getImages());
 
             world.removeEntity(this);
             scheduler.unscheduleAllEvents(this);
 
-            world.addEntity(octo);
-            octo.scheduleActions(scheduler, world, imageStore);
+            world.addEntity(mouse);
+            mouse.scheduleActions(scheduler, world, imageStore);
 
             return true;
         }

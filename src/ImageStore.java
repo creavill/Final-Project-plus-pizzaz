@@ -73,7 +73,7 @@ final class ImageStore {
     public static boolean processLine(String line, WorldModel world, ImageStore imageStore) {
         String[] properties = line.split("\\s");
 //
-//        System.out.println("dog".hashCode());
+//        System.out.println("mainCat".hashCode());
 
         if (properties.length > 0) {
             String var4 = properties[0];
@@ -87,8 +87,13 @@ final class ImageStore {
                         var5 = 0;
                     }
                     break;
-                case 3143256:
-                    if (var4.equals("fish")) {
+                case 830995293:
+                    if (var4.equals("mainCat")) {
+                        var5 = 6;
+                    }
+                    break;
+                case 98262:
+                    if (var4.equals("cat")) {
                         var5 = 3;
                     }
                     break;
@@ -97,8 +102,8 @@ final class ImageStore {
                         var5 = 1;
                     }
                     break;
-                case 310044248:
-                    if (var4.equals("atlantis")) {
+                case 586009349:
+                    if (var4.equals("mouseHole")) {
                         var5 = 4;
                     }
                     break;
@@ -126,6 +131,8 @@ final class ImageStore {
                     return imageStore.parseAtlantis(properties, world);
                 case 5:
                     return imageStore.parseSgrass(properties, world);
+                case 6:
+                    return imageStore.parseMainCat(properties, world);
             }
         }
 
@@ -150,6 +157,16 @@ final class ImageStore {
         }
 
         return properties.length == 7;
+    }
+
+    public boolean parseMainCat(String[] properties, WorldModel world) {
+        if (properties.length == 5) {
+            Point pt = new Point(Integer.parseInt(properties[2]), Integer.parseInt(properties[3]));
+            Entity entity = MainCat.createMainCat(properties[1], pt, Integer.parseInt(properties[4]), this.getImageList(Cat.CAT_KEY));
+            world.tryAddEntity(entity);
+        }
+
+        return properties.length == 5;
     }
 
     public boolean parseObstacle(String[] properties, WorldModel world) {
