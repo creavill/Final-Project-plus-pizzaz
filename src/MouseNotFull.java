@@ -29,7 +29,7 @@ public class MouseNotFull extends Mouse {
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> notFullTarget = world.findNearest(this.getPosition(),
-                Fish.class);
+                Cat.class);
 
         if (!notFullTarget.isPresent() ||
                 !this.moveTo( world, notFullTarget.get(), scheduler) ||

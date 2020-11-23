@@ -91,6 +91,11 @@ public final class VirtualWorld extends PApplet {
 
     }
 
+    public void mousePressed(){
+        System.out.println("mouse pressed");
+
+    }
+
     public static Background createDefaultBackground(ImageStore imageStore) {
         return new Background(DEFAULT_IMAGE_NAME, imageStore.getImageList(DEFAULT_IMAGE_NAME));
     }

@@ -17,8 +17,8 @@ public class Activity extends Action {
             ((MouseNotFull)this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
-        if (this.entity instanceof Fish) {
-            ((Fish)this.entity).execute(this.world,
+        if (this.entity instanceof Cat) {
+            ((Cat)this.entity).execute(this.world,
                     this.imageStore, scheduler);
         }
         if (this.entity instanceof Dog) {

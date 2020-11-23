@@ -121,7 +121,7 @@ final class ImageStore {
                 case 2:
                     return imageStore.parseObstacle(properties, world);
                 case 3:
-                    return imageStore.parseFish(properties, world);
+                    return imageStore.parseCat(properties, world);
                 case 4:
                     return imageStore.parseAtlantis(properties, world);
                 case 5:
@@ -162,10 +162,10 @@ final class ImageStore {
         return properties.length == 4;
     }
 
-    public boolean parseFish(String[] properties, WorldModel world) {
+    public boolean parseCat(String[] properties, WorldModel world) {
         if (properties.length == 5) {
             Point pt = new Point(Integer.parseInt(properties[2]), Integer.parseInt(properties[3]));
-            Entity entity = Fish.createFish(properties[1], pt, Integer.parseInt(properties[4]), this.getImageList("fish"));
+            Entity entity = Cat.createCat(properties[1], pt, Integer.parseInt(properties[4]), this.getImageList(Cat.CAT_KEY));
             world.tryAddEntity(entity);
         }
 

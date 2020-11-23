@@ -2,20 +2,20 @@ import processing.core.PImage;
 
 import java.util.List;
 
-public class Fish extends ScheduledAction {
+public class Cat extends ScheduledAction {
 
-    public static final String FISH_KEY = "fish";
-    public static final int FISH_NUM_PROPERTIES = 5;
-    public static final int FISH_ID = 1;
-    public static final int FISH_COL = 2;
-    public static final int FISH_ROW = 3;
-    public static final int FISH_ACTION_PERIOD = 4;
-    public static final String FISH_ID_PREFIX = "fish -- ";
-    public static final int FISH_CORRUPT_MIN = 20000;
-    public static final int FISH_CORRUPT_MAX = 30000;
-    public static final int FISH_REACH = 1;
+    public static final String CAT_KEY = "fish";
+    public static final int CAT_NUM_PROPERTIES = 5;
+    public static final int CAT_ID = 1;
+    public static final int CAT_COL = 2;
+    public static final int CAT_ROW = 3;
+    public static final int CAT_ACTION_PERIOD = 4;
+    public static final String CAT_ID_PREFIX = "fish -- ";
+    public static final int CAT_CORRUPT_MIN = 20000;
+    public static final int CAT_CORRUPT_MAX = 30000;
+    public static final int CAT_REACH = 1;
 
-    public Fish(String id, Point position, List<PImage> images, int actionPeriod) {
+    public Cat(String id, Point position, List<PImage> images, int actionPeriod) {
         super(id, position, images, actionPeriod);
     }
 
@@ -35,8 +35,8 @@ public class Fish extends ScheduledAction {
         dog.scheduleActions(scheduler, world, imageStore);
     }
 
-    public static Fish createFish(String id, Point position, int actionPeriod, List<PImage> images)
+    public static Cat createCat(String id, Point position, int actionPeriod, List<PImage> images)
     {
-        return new Fish(id, position, images, actionPeriod);
+        return new Cat(id, position, images, actionPeriod);
     }
 }

@@ -20,10 +20,10 @@ public class Cheese extends ScheduledAction {
 
         if (openPt.isPresent())
         {
-            Fish fish = Fish.createFish(Fish.FISH_ID_PREFIX + this.getId(),
-                    openPt.get(), Fish.FISH_CORRUPT_MIN +
-                            Functions.rand.nextInt(Fish.FISH_CORRUPT_MAX - Fish.FISH_CORRUPT_MIN),
-                    imageStore.getImageList(Fish.FISH_KEY));
+            Cat fish = Cat.createCat(Cat.CAT_ID_PREFIX + this.getId(),
+                    openPt.get(), Cat.CAT_CORRUPT_MIN +
+                            Functions.rand.nextInt(Cat.CAT_CORRUPT_MAX - Cat.CAT_CORRUPT_MIN),
+                    imageStore.getImageList(Cat.CAT_KEY));
             world.addEntity(fish);
             fish.scheduleActions(scheduler, world, imageStore);
         }
