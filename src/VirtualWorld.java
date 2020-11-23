@@ -8,16 +8,18 @@ import java.util.Scanner;
 
 public final class VirtualWorld extends PApplet {
     public static final int TIMER_ACTION_PERIOD = 100;
-    public static final int VIEW_WIDTH = 640;
-    public static final int VIEW_HEIGHT = 480;
+//    public static final int VIEW_WIDTH = 640;
+//    public static final int VIEW_HEIGHT = 480;
+    public static final int VIEW_WIDTH = 1248;
+    public static final int VIEW_HEIGHT = 768;
     public static final int TILE_WIDTH = 32;
     public static final int TILE_HEIGHT = 32;
 
     public static final int WORLD_WIDTH_SCALE = 2;
     public static final int WORLD_HEIGHT_SCALE = 2;
 
-    public static final int VIEW_COLS = 20;
-    public static final int VIEW_ROWS = 15;
+    public static final int VIEW_COLS = 40;
+    public static final int VIEW_ROWS = 30;
     private static final int WORLD_COLS = VIEW_COLS * WORLD_WIDTH_SCALE;
     private static final int WORLD_ROWS = VIEW_ROWS * WORLD_HEIGHT_SCALE;
 
@@ -37,6 +39,7 @@ public final class VirtualWorld extends PApplet {
     public WorldView view;
     public EventScheduler scheduler;
     public long next_time;
+    public MainCat cat;
 
     public VirtualWorld() {
     }
@@ -49,11 +52,18 @@ public final class VirtualWorld extends PApplet {
         this.imageStore = new ImageStore(createImageColored(TILE_WIDTH, TILE_HEIGHT, DEFAULT_IMAGE_COLOR));
         this.world = new WorldModel(WORLD_ROWS, WORLD_COLS, createDefaultBackground(this.imageStore));
         this.view = new WorldView(VIEW_ROWS, VIEW_COLS, this, this.world, TILE_WIDTH, TILE_HEIGHT);
+        //this.view.shiftView(10, 10);
         this.scheduler = new EventScheduler(timeScale);
         loadImages(IMAGE_LIST_FILE_NAME, this.imageStore, this);
         loadWorld(this.world, LOAD_FILE_NAME, this.imageStore);
         scheduleActions(this.world, this.scheduler, this.imageStore);
         this.next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
+
+        for (Iterator<Entity> it = this.world.entities.iterator(); it.hasNext(); ) {
+                Entity e = it.next();
+                if (e instanceof MainCat)
+                    cat = (MainCat)e;
+            }
     }
 
     public void draw() {
@@ -85,11 +95,29 @@ public final class VirtualWorld extends PApplet {
                     dx = 1;
                     break;
             }
-
-            this.view.shiftView(dx, dy);
+          //  WorldModel.moveEntity()
+//            MainCat cat = new MainCat("mainCat", new Point(2,2),
+//                    this.imageStore.getImageList(Cat.CAT_KEY  ), 4, 4);
+//            for (Iterator<Entity> it = this.world.entities.iterator(); it.hasNext(); ) {
+//                Entity e = it.next();
+//                if (e instanceof MainCat)
+//                    cat = (MainCat)e;
+//            }
+            System.out.println(cat.getPosition().getX());
+            cat.moveCat(world,view,dx,dy);
+            /*
+                Only view.shiftview if the x and y value are not center
+             */
         }
 
     }
+
+    public void mousePressed(){
+        System.out.println("mouse pressed");
+
+    }
+
+
 
     public static Background createDefaultBackground(ImageStore imageStore) {
         return new Background(DEFAULT_IMAGE_NAME, imageStore.getImageList(DEFAULT_IMAGE_NAME));
