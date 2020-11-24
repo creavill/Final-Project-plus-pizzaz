@@ -5,11 +5,11 @@ import java.util.Optional;
 
 
 public class MainCat extends ScheduledAnimation {
-    public static int health = 0;
-    public static int hunger = 0;
+    public static int livesLost = 0;
+    public static int fullness = 0;
     public MainCat(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
-        this.health=health;
+        this.livesLost=livesLost;
     }
 
     public Point nextPosition(WorldModel world, int dx, int dy){
@@ -40,13 +40,18 @@ public class MainCat extends ScheduledAnimation {
             Point tgtPos = mouse.get().getPosition();
             world.removeEntity(mouse.get());
             scheduler.unscheduleAllEvents(mouse.get());
-            this.hunger+=1;
+            this.fullness+=1;
             return true;
         }
         return false;
     }
     public void death(WorldModel world){
         world.moveEntity(this,new Point(10,10));
+    }
+
+    public void rebirth(){
+        this.livesLost=0;
+        this.fullness=0;
     }
 }
 

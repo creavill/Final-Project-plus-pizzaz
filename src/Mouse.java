@@ -33,24 +33,4 @@ public class Mouse extends Mover {
     public void setResourceCount(int resourceCount) {
         this.resourceCount = resourceCount;
     }
-
-
-    /*public Point nextPosition(WorldModel world, Point destPos) {
-        int horiz = Integer.signum(destPos.getX() - this.getPosition().getX());
-        Point newPos = new Point(this.getPosition().getX() + horiz,
-                this.getPosition().getY());
-
-        if (horiz == 0 || world.isOccupied(newPos))
-        {
-            int vert = Integer.signum(destPos.getY() - this.getPosition().getY());
-            newPos = new Point(this.getPosition().getX(),
-                    this.getPosition().getY() + vert);
-
-            if (vert == 0 || world.isOccupied(newPos))
-            {
-                newPos = this.getPosition();
-            }
-        }
-        return newPos;
-    }*/
 }

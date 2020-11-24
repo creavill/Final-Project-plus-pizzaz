@@ -25,7 +25,7 @@ final class WorldView {
             Point pos = entity.getPosition();
             if (this.viewport.contains(pos)) {
                 Point viewPoint = this.viewport.worldToViewport(pos.getX(), pos.getY());
-                this.screen.image(Functions.getCurrentImage(entity), (float)(viewPoint.getX() * this.tileWidth), (float)(viewPoint.getY() * this.tileHeight));
+                this.screen.image(ImageStore.getCurrentImage(entity), (float)(viewPoint.getX() * this.tileWidth), (float)(viewPoint.getY() * this.tileHeight));
             }
         }
     }

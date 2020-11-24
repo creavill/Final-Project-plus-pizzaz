@@ -8,16 +8,6 @@ final class Functions {
     Functions() {
     }
 
-    public static PImage getCurrentImage(Object entity) {
-        if (entity instanceof Background) {
-            return (PImage)((Background)entity).images.get(((Background)entity).imageIndex);
-        } else if (entity instanceof Entity) {
-            return (PImage) ((Entity) entity).getImages().get(((Entity) entity).getImageIndex());
-        } else {
-            throw new UnsupportedOperationException(String.format("getCurrentImage not supported for %s", entity));
-        }
-    }
-
     public static void setAlpha(PImage img, int maskColor, int alpha) {
         int alphaValue = alpha << 24;
         int nonAlpha = maskColor & 16777215;

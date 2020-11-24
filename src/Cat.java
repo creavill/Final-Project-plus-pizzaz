@@ -1,8 +1,9 @@
 import processing.core.PImage;
 
 import java.util.List;
+import java.util.Optional;
 
-public class Cat extends ScheduledAnimation {
+public class Cat extends Mover {
 
     public static final String CAT_KEY = "cat";
     public static final int CAT_NUM_PROPERTIES = 5;
@@ -21,24 +22,51 @@ public class Cat extends ScheduledAnimation {
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Point pos = this.getPosition();  // store current position before removing
+        Optional<Entity> mouse = world.findNearest(this.getPosition(), MouseNotFull.class);
+        long nextPeriod = this.getActionPeriod();
 
-        world.removeEntity(this);
-        scheduler.unscheduleAllEvents(this);
+        if (mouse.isPresent())
+        {
+            Point tgtPos = mouse.get().getPosition();
+            if (this.moveToCat(world, mouse.get(), scheduler))
+            {
+                world.removeEntity(mouse.get());
+            }
+        }
 
-        Dog dog = Dog.createDog(this.getId() + Dog.DOG_ID_SUFFIX,
-                pos, this.getActionPeriod() / Dog.DOG_PERIOD_SCALE,
-                Dog.DOG_ANIMATION_MIN +
-                        Functions.rand.nextInt(Dog.DOG_ANIMATION_MAX - Dog.DOG_ANIMATION_MIN),
-                imageStore.getImageList(Dog.DOG_KEY));
-
-        world.addEntity(dog);
-        dog.scheduleActions(scheduler, world, imageStore);
+        scheduler.scheduleEvent(this,
+                Activity.createActivityAction(this, world, imageStore),
+                nextPeriod);
     }
 
     public static Cat createCat(String id, Point position, int actionPeriod, List<PImage> images)
     {
         return new Cat(id, position, images, actionPeriod);
+    }
+
+    public boolean moveToCat(WorldModel world, Entity target, EventScheduler scheduler) {
+        if (this.getPosition().adjacent(target.getPosition()))
+        {
+            //world.removeEntity(target);
+            scheduler.unscheduleAllEvents(target);
+            return true;
+        }
+        else
+        {
+            Point nextPos = this.nextPosition(world, target.getPosition());
+
+            if (!this.getPosition().equals(nextPos))
+            {
+                Optional<Entity> occupant = world.getOccupant(nextPos);
+                if (occupant.isPresent())
+                {
+                    scheduler.unscheduleAllEvents(occupant.get());
+                }
+
+                world.moveEntity(this, nextPos);
+            }
+            return false;
+        }
     }
 
     public Point nextPosition(WorldModel world, int dx, int dy){

@@ -44,6 +44,8 @@ final class WorldModel {
         this.occupancy[pos.getY()][pos.getX()] = entity;
     }
 
+
+
     public void addEntity(Entity entity) {
         if (this.withinBounds(entity.getPosition())) {
             this.setOccupancyCell(entity.getPosition(), entity);
