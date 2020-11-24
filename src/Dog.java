@@ -37,7 +37,6 @@ public class Dog extends Mover {
     public boolean moveToDog(WorldModel world, Entity target, EventScheduler scheduler) {
         if (this.getPosition().adjacent(target.getPosition()))
         {
-            //world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
         }
@@ -52,8 +51,11 @@ public class Dog extends Mover {
                 {
                     scheduler.unscheduleAllEvents(occupant.get());
                 }
-
-                world.moveEntity(this, nextPos);
+                //---------------so the dog doesn't move on the main cats spawn------------------------//
+                try {
+                    world.moveEntity(this, nextPos);
+                }
+                catch (ArrayIndexOutOfBoundsException e ){}
             }
             return false;
         }

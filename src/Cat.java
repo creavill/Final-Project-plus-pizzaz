@@ -6,28 +6,23 @@ import java.util.Optional;
 public class Cat extends Mover {
 
     public static final String CAT_KEY = "cat";
-    public static final int CAT_NUM_PROPERTIES = 5;
-    public static final int CAT_ID = 1;
-    public static final int CAT_COL = 2;
-    public static final int CAT_ROW = 3;
-    public static final int CAT_ACTION_PERIOD = 4;
     public static final int CAT_ANIMATION_PERIOD = 4;
     public static final String CAT_ID_PREFIX = "cat -- ";
     public static final int CAT_CORRUPT_MIN = 20000;
     public static final int CAT_CORRUPT_MAX = 30000;
-    public static final int CAT_REACH = 1;
 
     public Cat(String id, Point position, List<PImage> images, int actionPeriod) {
         super(id, position, images, actionPeriod,CAT_ANIMATION_PERIOD);
     }
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
+        //-----------------------------chases mice----------------------------------//
         Optional<Entity> mouse = world.findNearest(this.getPosition(), MouseNotFull.class);
         long nextPeriod = this.getActionPeriod();
 
+        //-----------------------------checks if it can eat mice-----------------------//
         if (mouse.isPresent())
         {
-            Point tgtPos = mouse.get().getPosition();
             if (this.moveToCat(world, mouse.get(), scheduler))
             {
                 world.removeEntity(mouse.get());
@@ -47,7 +42,6 @@ public class Cat extends Mover {
     public boolean moveToCat(WorldModel world, Entity target, EventScheduler scheduler) {
         if (this.getPosition().adjacent(target.getPosition()))
         {
-            //world.removeEntity(target);
             scheduler.unscheduleAllEvents(target);
             return true;
         }

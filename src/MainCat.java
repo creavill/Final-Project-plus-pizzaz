@@ -49,9 +49,5 @@ public class MainCat extends ScheduledAnimation {
         world.moveEntity(this,new Point(10,10));
     }
 
-    public void rebirth(){
-        this.livesLost=0;
-        this.fullness=0;
-    }
 }
 

@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 import java.io.File;
@@ -8,8 +9,6 @@ import java.util.Scanner;
 
 public final class VirtualWorld extends PApplet {
     public static final int TIMER_ACTION_PERIOD = 100;
-//    public static final int VIEW_WIDTH = 640;
-//    public static final int VIEW_HEIGHT = 480;
     public static final int VIEW_WIDTH = 1248;
     public static final int VIEW_HEIGHT = 768;
     public static final int TILE_WIDTH = 32;
@@ -55,7 +54,6 @@ public final class VirtualWorld extends PApplet {
         this.imageStore = new ImageStore(createImageColored(TILE_WIDTH, TILE_HEIGHT, DEFAULT_IMAGE_COLOR));
         this.world = new WorldModel(WORLD_ROWS, WORLD_COLS, createDefaultBackground(this.imageStore));
         this.view = new WorldView(VIEW_ROWS, VIEW_COLS, this, this.world, TILE_WIDTH, TILE_HEIGHT);
-        //this.view.shiftView(10, 10);
         this.scheduler = new EventScheduler(timeScale);
         loadImages(IMAGE_LIST_FILE_NAME, this.imageStore, this);
         loadWorld(this.world, LOAD_FILE_NAME, this.imageStore);
@@ -71,12 +69,15 @@ public final class VirtualWorld extends PApplet {
 
 
     public void draw() {
+        //-------------------The start page, changes on space--------------------------------//
         if(start) {
             fill(153,204,255);
             rect(0,0,1300,800);
             fill(0,0,0);
+            PFont f = createFont("SansSerif.bold",506,true);
+            textFont(f);
             textSize(50);
-            text("TITLE OF THE GAME (FILLER)", 350, 200);
+            text("MOUSETRAP", 350, 200);
             textSize(25);
             text("Use ARROW KEYS to move cat and eat mice ", 350, 270);
             text("WATCH OUT for Dogs!!", 350, 340);
@@ -85,22 +86,27 @@ public final class VirtualWorld extends PApplet {
             text("Eat 18 Mice to win!", 350, 550);
             text("Press SPACE to start", 350, 620);
         }
+        //-----------------------Shows a win screen after 18 mice have been eaten--------------------------------------------//
         if(win){
             fill(0,155,0);
             rect(0,0,1300,800);
             fill(0,0,0);
             textSize(50);
-            text("U win", 350, 200);
+            text("You Win", 350, 200);
+            text("Reopen the window to play again", 350, 270);
             textSize(25);
         }
+        //-----------------------Shows a lose screen after 9 lives have been lost--------------------------------------------//
         if(lose){
             fill(155,0,0);
             rect(0,0,1300,800);
             fill(0,0,0);
             textSize(50);
-            text("U lsoe", 350, 200);
+            text("You Lose", 350, 200);
+            text("Reopen the window to play again", 350, 270);
             textSize(25);
         }
+        //----------------------------runs the game------------------//
         if(!start){
             if(cat.livesLost==9){
                 lose=true;
@@ -117,6 +123,7 @@ public final class VirtualWorld extends PApplet {
             }
 
             Viewport.drawViewport(this.view);
+        //---------------------------health and hunger bar------------------//
             strokeWeight(3);
             fill(0, 255, 0);
             stroke(0, 0, 0);
@@ -134,6 +141,7 @@ public final class VirtualWorld extends PApplet {
     }
 
     public void keyPressed() {
+        //---------------starts the game------------------------//
         if(key==' '){
             if(win||lose){
                win=false;
@@ -167,12 +175,14 @@ public final class VirtualWorld extends PApplet {
     }
 
     public void mousePressed(){
-        System.out.println("mouse pressed");
-        System.out.println("X: "+ mouseX+ " Y: " + mouseY);
+        //System.out.println("mouse pressed");
+        //System.out.println("X: "+ mouseX+ " Y: " + mouseY);
         Point randomPosition= new Point((int)random(39),(int)random(29));
         Point randomPositionCAT= new Point((int)random(39),(int)random(29));
         Point randomPositionDOG= new Point((int)random(39),(int)random(29));
         int dogOrCat= (int) random(0,1);
+
+        //-------------------Creates a mouse, cheese, and either dog or car--------------------------------------------//
         try {
             Entity cheese = new Cheese("cheese", new Point(mouseX / 32, mouseY / 32), imageStore.getImageList(Cheese.CHEESE_KEY), 4);
             world.tryAddEntity(cheese);
@@ -193,6 +203,11 @@ public final class VirtualWorld extends PApplet {
         catch(IllegalArgumentException e){
             return;
         }
+
+        //------------------------------changes the background to red----------------------------------------------------//
+        String ret="background grass2 " + mouseX/32 + " " +mouseY/32;
+        System.out.println(ret);
+        Background.parseBackground(ret.split("\\s"),world,imageStore);
 
     }
 
@@ -266,6 +281,7 @@ public final class VirtualWorld extends PApplet {
         }
     }
 
+    //--------------------resets the cat after being eaten by the dog---------------------------//
     public static void killCat(){
         cat.death(world);
         try {
