@@ -35,18 +35,25 @@ public final class VirtualWorld extends PApplet {
     public static final double FASTEST_SCALE = 0.1D;
     public static double timeScale = 1.0D;
     public ImageStore imageStore;
-    public WorldModel world;
+    public static WorldModel world;
     public WorldView view;
     public EventScheduler scheduler;
     public long next_time;
-    public MainCat cat;
+    public static MainCat cat;
 
     public VirtualWorld() {
     }
 
     public void settings() {
         this.size(VIEW_WIDTH, VIEW_HEIGHT);
+
     }
+    private Rectangle fullness;
+    private ColorRGB red=new ColorRGB(255,0,0);
+    private ColorRGB lightBlue=new ColorRGB(153,204,255);
+    private ColorRGB green=new ColorRGB(0,255,0);
+
+    private Rectangle health = new Rectangle(new Point(965,64),new Point(1248,0),green);
 
     public void setup() {
         this.imageStore = new ImageStore(createImageColored(TILE_WIDTH, TILE_HEIGHT, DEFAULT_IMAGE_COLOR));
@@ -62,7 +69,7 @@ public final class VirtualWorld extends PApplet {
         for (Iterator<Entity> it = this.world.entities.iterator(); it.hasNext(); ) {
                 Entity e = it.next();
                 if (e instanceof MainCat)
-                    cat = (MainCat)e;
+                    this.cat = (MainCat)e;
             }
     }
 
@@ -74,6 +81,19 @@ public final class VirtualWorld extends PApplet {
         }
 
         Viewport.drawViewport(this.view);
+        strokeWeight(3);
+        fill(0,255,0);
+        stroke(0,0,0);
+        rect(965,0,288,32);
+        fill(153,204,255);
+        rect(965,32,288,32);
+        fill(255,0,0);
+        rect(1248-cat.health*32,0,288,32);
+        rect(965+cat.hunger*32,32,288,32);
+        fill(0,0,0);
+        textSize(15);
+        text("hunger",970,47);
+        text("health",970,15);
     }
 
     public void keyPressed() {
@@ -103,8 +123,9 @@ public final class VirtualWorld extends PApplet {
 //                if (e instanceof MainCat)
 //                    cat = (MainCat)e;
 //            }
-            System.out.println(cat.getPosition().getX());
-            cat.moveCat(world,view,dx,dy);
+            //System.out.println(cat.getPosition().getX());
+            this.cat.moveCat(world,view,dx,dy,scheduler);
+
             /*
                 Only view.shiftview if the x and y value are not center
              */
@@ -114,10 +135,9 @@ public final class VirtualWorld extends PApplet {
 
     public void mousePressed(){
         System.out.println("mouse pressed");
+        System.out.println("X: "+ mouseX+ " Y: " + mouseY);
 
     }
-
-
 
     public static Background createDefaultBackground(ImageStore imageStore) {
         return new Background(DEFAULT_IMAGE_NAME, imageStore.getImageList(DEFAULT_IMAGE_NAME));
@@ -225,6 +245,18 @@ public final class VirtualWorld extends PApplet {
             }
         }
     }
+
+    public static void killCat(){
+        cat.death(world);
+        try {
+            Thread.sleep(1000L);
+        } catch (InterruptedException var9) {
+            var9.printStackTrace();
+        }
+        cat.health+=1;
+
+    }
+
 
     public static void main(String[] args) {
         parseCommandLine(args);

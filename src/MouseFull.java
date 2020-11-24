@@ -9,7 +9,7 @@ public class MouseFull extends Mouse {
     }
 
     public void transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore) {
-        MouseNotFull mouse = MouseNotFull.createOctoNotFull(this.getId(), this.getResourceLimit(),
+        MouseNotFull mouse = MouseNotFull.createMouseNotFull(this.getId(), this.getResourceLimit(),
                 this.getPosition(), this.getActionPeriod(), this.getAnimationPeriod(),
                 this.getImages());
 
@@ -64,7 +64,7 @@ public class MouseFull extends Mouse {
         }
     }
 
-    public static MouseFull createOctoFull(String id, int resourceLimit, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
+    public static MouseFull createMouseFull(String id, int resourceLimit, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
     {
         return new MouseFull(id, position, images, resourceLimit, resourceLimit, actionPeriod, animationPeriod);
     }

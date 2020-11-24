@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class Cheese extends ScheduledAction {
 
-    public static final String CHEESE_KEY = "seaGrass";
+    public static final String CHEESE_KEY = "cheese";
     public static final int CHEESE_NUM_PROPERTIES = 5;
     public static final int CHEESE_ID = 1;
     public static final int CHEESE_COL = 2;

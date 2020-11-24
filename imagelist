@@ -1,15 +1,15 @@
 mouseHole images/mouseHole1.png 255 255 255 0
 mouseHole images/mouseHole2.png
-crab images/dog1.png 255 255 255 128
-crab images/dog2.png  255 255 255 128
-crab images/dog3.png 255 255 255 128
-crab images/dog4.png  255 255 255 128
+dog images/dog1.png 255 255 255 128
+dog images/dog2.png  255 255 255 128
+dog images/dog3.png 255 255 255 128
+dog images/dog4.png  255 255 255 128
 cat images/cat1.png 255 255 255 0
 cat images/cat2.png 255 255 255 0
 cat images/cat3.png 255 255 255 0
 cat images/cat4.png 255 255 255 0
-bubbles images/pond.png
-seaGrass images/cheese.png 255 255 255 0
+pond images/pond.png
+cheese images/cheese.png 255 255 255 0
 background_default images/grass.png
 dog images/dog1.png 255 255 255 0
 dog images/dog2.png 255 255 255 0
@@ -24,4 +24,4 @@ mouse images/mouse2.png 255 255 255 0
 mouse images/mouse3.png 255 255 255 0
 mouse images/mouse4.png 255 255 255 0
 obstacle images/obstacle1.png 255 255 255 0
-sea images/grass.png 255 255 255 0
+grass images/grass.png 255 255 255 0

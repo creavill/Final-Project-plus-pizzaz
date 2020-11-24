@@ -72,8 +72,8 @@ final class ImageStore {
 
     public static boolean processLine(String line, WorldModel world, ImageStore imageStore) {
         String[] properties = line.split("\\s");
-//
-//        System.out.println("mainCat".hashCode());
+////
+//        System.out.println("pond".hashCode());
 
         if (properties.length > 0) {
             String var4 = properties[0];
@@ -112,9 +112,13 @@ final class ImageStore {
                         var5 = 2;
                     }
                     break;
-                case 849374887:
-                    if (var4.equals("seaGrass")) {
+                case -1361525545:
+                    if (var4.equals("cheese")) {
                         var5 = 5;
+                    }
+                case 3446773:
+                    if (var4.equals("pond")) {
+                        var5 = 7;
                     }
             }
 
@@ -122,17 +126,19 @@ final class ImageStore {
                 case 0:
                     return Background.parseBackground(properties, world, imageStore);
                 case 1:
-                    return imageStore.parseOcto(properties, world);
+                    return imageStore.parseMouse(properties, world);
                 case 2:
                     return imageStore.parseObstacle(properties, world);
                 case 3:
                     return imageStore.parseCat(properties, world);
                 case 4:
-                    return imageStore.parseAtlantis(properties, world);
+                    return imageStore.parseMouseHole(properties, world);
                 case 5:
-                    return imageStore.parseSgrass(properties, world);
+                    return imageStore.parseCheese(properties, world);
                 case 6:
                     return imageStore.parseMainCat(properties, world);
+                case 7:
+                    return imageStore.parsePond(properties, world);
             }
         }
 
@@ -149,10 +155,10 @@ final class ImageStore {
         }
     }
 
-    public boolean parseOcto(String[] properties, WorldModel world) {
+    public boolean parseMouse(String[] properties, WorldModel world) {
         if (properties.length == 7) {
             Point pt = new Point(Integer.parseInt(properties[2]), Integer.parseInt(properties[3]));
-            Entity entity = MouseNotFull.createOctoNotFull(properties[1], Integer.parseInt(properties[4]), pt, Integer.parseInt(properties[5]), Integer.parseInt(properties[6]), this.getImageList("mouse"));
+            Entity entity = MouseNotFull.createMouseNotFull(properties[1], Integer.parseInt(properties[4]), pt, Integer.parseInt(properties[5]), Integer.parseInt(properties[6]), this.getImageList("mouse"));
             world.tryAddEntity(entity);
         }
 
@@ -162,7 +168,7 @@ final class ImageStore {
     public boolean parseMainCat(String[] properties, WorldModel world) {
         if (properties.length == 5) {
             Point pt = new Point(Integer.parseInt(properties[2]), Integer.parseInt(properties[3]));
-            Entity entity = MainCat.createMainCat(properties[1], pt, Integer.parseInt(properties[4]), this.getImageList(Cat.CAT_KEY));
+            Entity entity = MainCat.createMainCat(properties[1], pt, this.getImageList(Cat.CAT_KEY));
             world.tryAddEntity(entity);
         }
 
@@ -179,6 +185,16 @@ final class ImageStore {
         return properties.length == 4;
     }
 
+    public boolean parsePond(String[] properties, WorldModel world) {
+        if (properties.length == 4) {
+            Point pt = new Point(Integer.parseInt(properties[2]), Integer.parseInt(properties[3]));
+            Entity entity = Obstacle.createObstacle(properties[1], pt, this.getImageList("pond"));
+            world.tryAddEntity(entity);
+        }
+
+        return properties.length == 4;
+    }
+
     public boolean parseCat(String[] properties, WorldModel world) {
         if (properties.length == 5) {
             Point pt = new Point(Integer.parseInt(properties[2]), Integer.parseInt(properties[3]));
@@ -189,7 +205,7 @@ final class ImageStore {
         return properties.length == 5;
     }
 
-    public boolean parseAtlantis(String[] properties, WorldModel world) {
+    public boolean parseMouseHole(String[] properties, WorldModel world) {
         if (properties.length == 4) {
             Point pt = new Point(Integer.parseInt(properties[2]), Integer.parseInt(properties[3]));
             Entity entity = MouseHole.createMouseHole(properties[1], pt, this.getImageList(MouseHole.MOUSEHOLE_KEY));
@@ -199,7 +215,7 @@ final class ImageStore {
         return properties.length == 4;
     }
 
-    public boolean parseSgrass(String[] properties, WorldModel world) {
+    public boolean parseCheese(String[] properties, WorldModel world) {
         if (properties.length == 5) {
             Point pt = new Point(Integer.parseInt(properties[2]), Integer.parseInt(properties[3]));
             Entity entity = Cheese.createCheese(properties[1], pt, Integer.parseInt(properties[4]), this.getImageList(Cheese.CHEESE_KEY));

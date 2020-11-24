@@ -11,7 +11,7 @@ public class MouseNotFull extends Mouse {
     public boolean transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
         if (this.getResourceCount() >= this.getResourceLimit())
         {
-            MouseFull mouse = MouseFull.createOctoFull(this.getId(), this.getResourceLimit(),
+            MouseFull mouse = MouseFull.createMouseFull(this.getId(), this.getResourceLimit(),
                     this.getPosition(), this.getActionPeriod(), this.getAnimationPeriod(),
                     this.getImages());
 
@@ -29,7 +29,7 @@ public class MouseNotFull extends Mouse {
 
     public void execute(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
         Optional<Entity> notFullTarget = world.findNearest(this.getPosition(),
-                Cat.class);
+                Cheese.class);
 
         if (!notFullTarget.isPresent() ||
                 !this.moveTo( world, notFullTarget.get(), scheduler) ||
@@ -68,7 +68,7 @@ public class MouseNotFull extends Mouse {
         }
     }
 
-    public static MouseNotFull createOctoNotFull(String id, int resourceLimit, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
+    public static MouseNotFull createMouseNotFull(String id, int resourceLimit, Point position, int actionPeriod, int animationPeriod, List<PImage> images)
     {
         return new MouseNotFull(id, position, images, resourceLimit, resourceLimit, actionPeriod, animationPeriod);
     }
