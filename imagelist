@@ -8,6 +8,10 @@ cat images/cat1.png 255 255 255 0
 cat images/cat2.png 255 255 255 0
 cat images/cat3.png 255 255 255 0
 cat images/cat4.png 255 255 255 0
+gcat images/greyCat1.png 255 255 255 0
+gcat images/greyCat2.PNG 255 255 255 0
+gcat images/greyCat3.png 255 255 255 0
+gcat images/greyCat4.png 255 255 255 0
 pond images/pond.png
 cheese images/cheese.png 255 255 255 0
 background_default images/grass.png

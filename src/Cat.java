@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Cat extends Mover {
 
-    public static final String CAT_KEY = "cat";
+    public static final String CAT_KEY = "gcat";
     public static final int CAT_ANIMATION_PERIOD = 4;
     public static final String CAT_ID_PREFIX = "cat -- ";
     public static final int CAT_CORRUPT_MIN = 20000;

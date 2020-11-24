@@ -168,7 +168,7 @@ final class ImageStore {
     public boolean parseMainCat(String[] properties, WorldModel world) {
         if (properties.length == 5) {
             Point pt = new Point(Integer.parseInt(properties[2]), Integer.parseInt(properties[3]));
-            Entity entity = MainCat.createMainCat(properties[1], pt, this.getImageList(Cat.CAT_KEY));
+            Entity entity = MainCat.createMainCat(properties[1], pt, this.getImageList("cat"));
             world.tryAddEntity(entity);
         }
 
